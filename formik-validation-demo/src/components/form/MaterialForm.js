@@ -148,8 +148,67 @@ export default function MaterialForm(props) {
                     ''
                     }
                 
-            </Grid>
+                </Grid>
                            
+
+                <Grid item xs={12} style={{marginTop: '17px'}}>
+                
+                    <FormControl component="fieldset" className={styles.formControl}>
+                        <FormLabel component="legend" >Do you have a Fax Number?</FormLabel>
+
+                        <RadioGroup row aria-label="position" 
+                                    name="hasFaxNumber"
+                                    onChange={props.formik.handleChange}
+                                    onBlur={props.formik.handleBlur}
+                                    value={props.formik.values.hasFaxNumber}
+                                    error={props.formik.touched.hasFaxNumber && Boolean(props.formik.errors.hasFaxNumber)}
+                                    helperText={props.formik.touched.hasFaxNumber && props.formik.errors.hasFaxNumber}         
+                                    >
+                            <FormControlLabel
+                                value="Yes"
+                                control={<Radio color="primary" />}
+                                label="Yes"
+                                labelPlacement="start"                        
+                            />
+                            <FormControlLabel
+                                value="No"
+                                control={<Radio color="primary" />}
+                                label="No"
+                                labelPlacement="start"
+                            />                    
+                        
+                        </RadioGroup>
+                        
+                    </FormControl>       
+                    {(props.formik.touched.hasFaxNumber && Boolean(props.formik.errors.hasFaxNumber))?
+                    <Alert severity="error">Please choose Yes or No</Alert>
+                    :
+                    ''
+                    }
+                
+                </Grid>                           
+
+                <Grid item xs={12} >
+                    {props.formik.values.hasFaxNumber === 'Yes'?
+                        <MuiPhoneNumber
+                            variant="outlined"
+                            fullWidth
+                            size="small"
+                            name="faxNumber"
+                            label="faxNumber"
+                            defaultCountry={"us"}
+                            value={props.formik.values.faxNumber}
+                            error={props.formik.touched.faxNumber && Boolean(props.formik.errors.faxNumber)}
+                            helperText={props.formik.touched.faxNumber && props.formik.errors.faxNumber}    
+                            onChange={e => props.formik.setFieldValue("faxNumber", e)}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+
+                        />                                      
+                    : ''
+                    }
+                </Grid>      
 
                <Grid sm={12} style={{marginTop: '17px', marginLeft: '12px'}}>                        
                    

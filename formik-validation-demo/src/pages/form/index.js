@@ -54,6 +54,23 @@ export default function StepperForm() {
     color: yup
       .mixed('Pick a color')      
       .required('Color is required'),
+    hasFaxNumber: yup
+      .string('Please choose Yes or No')      
+      .required('Fax is required'),
+    faxNumber: yup    
+      .string()        
+      .when("hasFaxNumber", {
+        is: "Yes",
+        then: yup.string().required('Fax number is required if you answered Yes above').min(17, '10 Digit Phone Number')    
+      }),
+      secondUsername: yup    
+      .string('Name is required if request is one behalkf of another person')        
+      .when("onBehalfOf", {
+        is: "Yes",
+        then: yup.string('Name is required if request is one behalkf of another person').required('Name is required if you answered Yes above')
+      })      
+         
+
     });
 
 //********************************************************************************************************************************* */
@@ -66,7 +83,9 @@ export default function StepperForm() {
       email: '',
       phone: '',      
       startDate: null,
-      color: ''
+      color: '',
+      hasFaxNumber: '',
+      faxNumber: ''
     },
 
     validationSchema: formValidationSchema,    
@@ -88,7 +107,10 @@ export default function StepperForm() {
       Email: formik.values.email,        
       Phone: formik.values.phone,              
       StartDate: formik.values.startDate,              
-      Color: formik.values.color         
+      Color: formik.values.color,
+      HasFaxNumber: formik.values.hasFaxNumber,              
+      FaxNumber: formik.values.faxNumber,              
+         
     }    
     alert(JSON.stringify(data, null, 2));
   }
