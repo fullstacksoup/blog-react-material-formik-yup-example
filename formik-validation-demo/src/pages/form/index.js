@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { addDays } from 'date-fns'
 import MaterialForm from 'components/form/MaterialForm';
+import { capitalize } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -103,8 +104,8 @@ export default function StepperForm() {
   
   const handleFormSubmit = () => {
     var data = {
-      Name: formik.values.name,        
-      Email: formik.values.email,        
+      Name: capitalize(formik.values.name),        
+      Email: formik.values.email.toLowerCase(),        
       Phone: formik.values.phone,              
       StartDate: formik.values.startDate,              
       Color: formik.values.color,

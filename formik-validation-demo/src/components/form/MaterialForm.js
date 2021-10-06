@@ -31,7 +31,8 @@ export default function MaterialForm(props) {
                         label="Name"
                         id="name"
                         name="name"
-                        type="text"                                                
+                        type="text"                    
+                        inputProps={{style: {textTransform: 'capitalize'}}}                                          
                         onChange={props.formik.handleChange}
                         onBlur={props.formik.handleBlur}
                         value={props.formik.values.name}
@@ -52,6 +53,7 @@ export default function MaterialForm(props) {
                         id="email"
                         name="email"
                         type="email"
+                        inputProps={{style: {textTransform: 'lowercase'}}}                
                         onChange={props.formik.handleChange}
                         onBlur={props.formik.handleBlur}
                         value={props.formik.values.email}
